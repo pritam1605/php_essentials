@@ -22,12 +22,17 @@
 		die('Improper to or from value provided');
 	}
 
-	$response = $client->request('GET', 'http://api.fixer.io/latest', [
-		'query' => [
-			'base' => $_GET['from'],
-			'symbols' => $_GET['to'],
-		]
-	]);
+	try {
+		$response = $client->request('GET', 'http://api.fixer.io/latefsdst', [
+			'query' => [
+				'base' => $_GET['from'],
+				'symbols' => $_GET['to'],
+			]
+		]);
+	} catch (\Exception $e) {
+		echo $e->getMessage();
+		return;
+	}
 
 	$response = json_decode($response->getBody());
 	$convertedValue = number_format((float) $_GET['value'] * $response->rates->{$_GET['to']}, 2);
