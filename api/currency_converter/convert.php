@@ -23,7 +23,7 @@
 	}
 
 	try {
-		$response = $client->request('GET', 'http://api.fixer.io/latefsdst', [
+		$response = $client->request('GET', 'http://api.fixer.io/latest', [
 			'query' => [
 				'base' => $_GET['from'],
 				'symbols' => $_GET['to'],
